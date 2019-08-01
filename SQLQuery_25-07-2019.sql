@@ -172,7 +172,7 @@ GO
 
 select * from tbl_buku
 --EKSEKUSI PROCEDURE PERTAMA
-EXEC prod_dipanggil 3, 'Menunggu Singlemu','Toma', 33
+EXEC prod_dipanggil 3, 'Si Belang','Heribertus', 3
 --EKSEKUSI PROCEDURE KEDUA (yang mana juga akan otomatis memanggil procedure pertama)
 EXEC prod_pemanggil 3
 
@@ -180,6 +180,9 @@ EXEC prod_pemanggil 3
 
 EXEC prod_dipanggil 2, 'Generasi Milenial','Leo', 63
 EXEC prod_pemanggil 2
+
+EXEC prod_pemanggil 11
+
 
 
 

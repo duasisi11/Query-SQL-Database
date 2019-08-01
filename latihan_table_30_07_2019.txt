@@ -1,0 +1,39 @@
+buatlah sebuah database untuk pendataan instansi / kesatuan dan data pegawai di
+kementrian pertahanan.
+
+Buatlah 3 tombol di microsoft visual studio untuk menampilkan data.
+
+create table kesatuan
+(
+id_kesatuan int not null constraint pk_idkes primary key,
+nama_kesatuan varchar(20),
+alamat text
+)
+
+create table jabatan 
+(
+id_jabatan int not null constraint pk_idjab primary key,
+nama_jabatan varchar(30),
+tmt_jabatan date,
+tunjangan_jabatan int
+)
+
+create table diklat
+(
+id_diklat int not null constraint pk_iddik primary key,
+nama_diklat varchar(30),
+thn_lulus date
+)
+
+create table anggota
+(
+nip_nrp int constraint pk_idagt primary key,
+nama_anggota varchar(40),
+pangkat_gol varchar(20),
+jenis_kelamin char(10),
+agama varchar(20),
+status varchar(20),
+id_jabatan int constraint fk_idjab references jabatan(id_jabatan),
+id_kesatuan int constraint fk_idkes references kesatuan(id_kesatuan),
+id_diklat int constraint fk_iddik references diklat(id_diklat)
+)  

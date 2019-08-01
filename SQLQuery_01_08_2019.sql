@@ -1,0 +1,18 @@
+--use db_library
+
+select * from tbl_anggota
+
+select * from tbl_buku
+
+SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME = 'tbl_buku' or TABLE_NAME = 'tbl_kategori'
+
+select a.id_anggota, a.nama, a.alamat, p.id_peminjaman, p.tgl_pinjam, p.tgl_kembali, p.keterangan, dp.qty, b.judul, b.penerbit, k.nama_kategori, kbl.tgl AS "Tanggal Kembali", kbl.denda
+from tbl_anggota a JOIN tbl_peminjaman p ON a.id_anggota = p.id_anggota
+JOIN tbl_pengembalian kbl ON a.id_anggota =  kbl.id_anggota
+JOIN tbl_det_peminjaman dp ON p.id_peminjaman=dp.id_peminjaman
+JOIN tbl_buku b ON dp.id_buku = b.id_buku
+JOIN tbl_kategori k ON b.id_kategori = k.id_kategori;
+
+
+select * from tbl_buku b JOIN tbl_kategori k ON b.id_kategori = k.id_kategori;
+
