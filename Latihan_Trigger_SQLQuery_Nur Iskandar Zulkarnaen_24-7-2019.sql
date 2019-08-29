@@ -1,3 +1,47 @@
+select * from Log_Delete_Personil_History
+
+	select *from Manajemen_User where nip_nrp='21120008290392';
+	select * FROM Bahasa where nip_nrp='21120008290392';
+    select * FROM Dokumen where nip_nrp='21120008290392';
+    select * FROM Kartu_Identitas where nip_nrp='21120008290392';
+    select * FROM Riwayat_Jabatan where nip_nrp='21120008290392';
+    select * FROM Riwayat_Keluarga where nip_nrp='21120008290392';
+    select * FROM Riwayat_Pangkat where nip_nrp='21120008290392';
+    select * FROM Riwayat_Pendidikan where nip_nrp='21120008290392';
+    select * FROM Riwayat_Penugasan where nip_nrp='21120008290392';
+    select * FROM Riwayat_Tanda_Jasa where nip_nrp='21120008290392';
+    select * FROM Sumber_Personil where nip_nrp='21120008290392';
+    select * FROM Personil where nip_nrp='21120008290392';
+
+create table Log_Delete_Personil_History (
+id int identity(1,1) not null,
+nip_nrp varchar(20),
+keterangan varchar(30),
+PRIMARY KEY ([id])
+)
+
+
+ALTER TRIGGER Log_Delete_All_Trigger
+    ON Manajemen_User
+    FOR DELETE
+AS DECLARE @nip_nrp VARCHAR(20);
+	SELECT @nip_nrp = deleted.nip_nrp FROM deleted;
+    DELETE FROM Bahasa WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Dokumen WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Kartu_Identitas WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Riwayat_Jabatan WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Riwayat_Keluarga WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Riwayat_Pangkat WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Riwayat_Pendidikan WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Riwayat_Penugasan WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Riwayat_Tanda_Jasa WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Sumber_Personil WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+    DELETE FROM Personil WHERE nip_nrp IN(SELECT deleted.nip_nrp FROM deleted);
+	INSERT INTO Log_Delete_Personil_History values(@nip_nrp,'Deleted'); 
+GO
+
+
+
 use siswa
 create table Log_tabel_dtSiswa
 (
